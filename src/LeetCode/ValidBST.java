@@ -5,21 +5,17 @@ package LeetCode;
 
 public class ValidBST {
      
-    int temp = Integer.MIN_VALUE;
-    public boolean isValidBST(TreeNode root)
+    public boolean isValidBSTHelper(TreeNode node, int min, int max)
     {   
-        if(root == null)
+        if(node == null)
             return true;
-        if( isValidBST(root.left) )
-        {
-            if(root.val > temp)
-            {
-                temp = root.val;
-                return  isValidBST(root.right);
-            }
-        }
+        if(node.val > min && node.val < max)
+            return (isValidBSTHelper(node.left, min, node.val) && isValidBSTHelper(node.right,node.val, max) );
         return false;
     }
+    public boolean isValidBST(TreeNode root)
+    {   return isValidBSTHelper(root,Integer.MIN_VALUE, Integer.MAX_VALUE);}
+    
     public class TreeNode {
       int val;
       TreeNode left;
