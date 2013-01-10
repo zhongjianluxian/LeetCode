@@ -11,24 +11,6 @@ public class UniquePathII {
         int n = obstacleGrid[0].length;
         if(m*n==0 || obstacleGrid[m-1][n-1] == 1)
             return 0;
-        if(m==1)
-        {
-            for(int k=0;k<n;k++)
-            {
-                if(obstacleGrid[0][k]==1)
-                    return 0;
-            }
-            return 1;
-        }
-        if(n==1)
-        {
-            for(int k=0;k<m;k++)
-            {
-                if(obstacleGrid[k][0]==1)
-                    return 0;
-            }
-            return 1;
-        }
         //initialization
         int[] temp_column = new int[m];
         int[] temp_row = new int[n];
@@ -54,6 +36,10 @@ public class UniquePathII {
             else
                 temp_row[i] = 1;
         }
+        if(n==1)
+            return temp_column[0];
+        if(m==1)
+            return temp_row[0];
         temp_column[m-1] = obstacleGrid[m-1][n-2] ^1;
         //scan all the grids
         for(int i=n-2;i>=0;i--)
