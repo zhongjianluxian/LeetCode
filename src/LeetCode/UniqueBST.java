@@ -10,10 +10,6 @@ public class UniqueBST {
         {
             if(i==0)
                 numbers[i] = 1;
-            else if(i==1)
-                numbers[i] = 1;
-            else if(i==2)
-                numbers[i] = 2;
             else
                 numbers[i] = this.calcNumbers(i, numbers);
         }
@@ -21,12 +17,10 @@ public class UniqueBST {
     }
     private int calcNumbers(int i, int[] numbers)
     {
-        int sum=0, item;
+        int sum=0;
         for(int j=0;j<i;j++)
-        {
-            item = numbers[j]*numbers[i-j-1];
-            sum+=item;
-        }
+            sum += numbers[j]*numbers[i-j-1];
+
         return sum;
     }
 }
